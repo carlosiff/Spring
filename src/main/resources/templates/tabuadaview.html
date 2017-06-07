@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Lista de Convidados</title>
+<link th:href="@{/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<form method="POST" th:action="@{/tabuada}" th:object="${tf}" >
+		
+		<input type="text" th:field="*{n1}" />
+		<input type="text" th:field="*{n2}" />
+		<button type="submit" class="btn btn-primary">Calcular</button>
+		
+</form>
+<h1>Resultado: <span th:text="${resultado}">0</span></h1>
+</body>
+</html>

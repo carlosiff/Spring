@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Lista de Convidados</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<form class="form-horizontal" method="POST" th:action="@{/usuarios}"
+		th:object="${usuario}">
+		
+		<!-- 
+		<div layout:include="MensagemGeral"></div>
+		<div layout:include="MensagemErro"></div>
+ 		-->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title aw-titulo-panel">Novo Usuario</h1>
+					<a class="btn btn-link aw-link-panel" th:href="@{/usuarios}">Voltar
+						para pesquisa</a>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<input type="hidden" th:field="*{idUsuario}" />
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('nome')} ? has-error">
+					<label for="nome" class="col-sm-2 control-label">Nome</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="nome"
+							th:field="*{nome}" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('email')} ? has-error">
+					<label for="email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="email"
+							th:field="*{email}" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('dtNascimento')} ? has-error">
+					<label for="dtNascimento" class="col-sm-2 control-label">Dt
+						Nascto</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="dtNascimento"
+							th:field="*{dtNascimento}" />
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('salario')} ? has-error">
+					<label for="salario" class="col-sm-2 control-label">Salario</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="salario"
+							th:field="*{salario}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Lista de Convidados</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista de Usuarios</h1>
+			<a class="btn btn-link aw-link-panel" th:href="@{/usuarios/novo}">Novo Usuario</a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Data de Nascimento</th>
+					<th>Salário</th>
+					<th colspan="2">Ação</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${usuarios}">
+					<td th:text="${usuario.nome}">xxx</td>
+					<td th:text="${usuario.email}">xxx@xxx</td>
+					<td th:text="${usuario.dtNascimento}">xxxx-xx-xx</td>
+					<td th:text="${usuario.salario}">xx,xxx</td>
+					<td> 
+						<a th:href="@{/usuarios/alterar/}+${usuario.idUsuario}" class="glyphicon glyphicon-pencil"></a>
+					</td>
+					<td>
+						<a th:href="@{/usuarios/excluir/}+${usuario.idUsuario}" class="glyphicon glyphicon-trash"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
