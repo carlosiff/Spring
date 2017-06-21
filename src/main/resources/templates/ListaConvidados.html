@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
@@ -8,6 +9,8 @@
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
 </head>
+<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 <body>
 	<div class="panel panel-default" style="margin: 10px">
 		<div class="panel-heading" >
@@ -38,12 +41,18 @@
 							<a th:href="@{/convidados/alterar/}+${convidado.id}" class="glyphicon glyphicon-pencil"></a>
 						</td>
 						<td>
-							<a th:href="@{/convidados/excluir/}+${convidado.id}" class="glyphicon glyphicon-trash"></a>
+							<a class="btn btn-link btn-xs" data-toggle="modal"
+								data-target="#confirmacaoExclusaoModal"
+								th:attr="data-codigo=${convidado.id}, data-descricao=${convidado.nome}, data-model='convidado' "
+								title="Excluir" rel="tooltip" data-placement="top"> <span
+								class="glyphicon glyphicon-remove"></span>
+							</a> 
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		<div layout:include="DialogoConfirmacaoExclusao"></div>
 	</div>
 </body>
 </html>

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.gestaofesta.model.Usuario;
 import com.algaworks.gestaofesta.repository.Usuarios;
@@ -58,5 +60,12 @@ public class UsuarioController {
 	mv.addObject(usuario);
 	return mv;
 	}
+	//Excluir
+		@RequestMapping(value="{idUsuario}", method = RequestMethod.DELETE)
+		public String excluir(@PathVariable Long idUsuario, RedirectAttributes attributes) {
+			usuarios.delete(idUsuario);
+			attributes.addFlashAttribute("mensagem", "Usuários excluído com sucesso!");
+			return "redirect:/usuarios";
+		}
 	
 }
