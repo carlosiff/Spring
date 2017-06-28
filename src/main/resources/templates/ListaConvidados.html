@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width" />
-<title>Lista de Convidados</title>
-<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
-</head>
-<body>
-	<div class="panel panel-default" style="margin: 10px">
-		<div class="panel-heading" >
-			<h1 class="panel-title">Lista de convidados</h1>
-		</div>
-		<form class="form-inline" method="POST" th:object="${convidado}" th:action="@{/convidados}" style="margin: 20px 0">
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="LayoutPadrao">
+
+<section layout:fragment="conteudo">
+	<div layout:include="MensagemGeral"></div>
+
+	<div class="panel panel-default">
+		<form class="form-inline" method="POST" th:object="${convidado}"
+			th:action="@{/convidados}" style="margin: 20px 0">
 			<div class="form-group">
-				<input type="hidden" th:field="*{id}"/> 
-				<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/> 
-				<input type="text" class="form-control" placeholder="Acompanhantes" th:field="*{quantidadeAcompanhantes}"/>
+				<input type="hidden" th:field="*{id}" /> <input type="text"
+					class="form-control" placeholder="Nome" th:field="*{nome}" /> <input
+					type="text" class="form-control" placeholder="Acompanhantes"
+					th:field="*{quantidadeAcompanhantes}" />
 				<button type="submit" class="btn btn-primary">Adicionar</button>
 			</div>
 		</form>
-		<div class="panel-body">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Acompanhantes</th>
-						<th colspan="2">Ação</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="convidado : ${convidados}">
-						<td th:text="${convidado.nome}"></td>
-						<td th:text="${convidado.quantidadeAcompanhantes}"></td>
-						<td> 
-							<a th:href="@{/convidados/alterar/}+${convidado.id}" class="glyphicon glyphicon-pencil"></a>
-						</td>
-						<td>
-							<a th:href="@{/convidados/excluir/}+${convidado.id}" class="glyphicon glyphicon-trash"></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		Agora
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Acompanhantes</th>
+					<th colspan="2">Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="convidado : ${convidados}">
+					<td th:text="${convidado.nome}">João</td>
+					<td th:text="${convidado.quantidadeAcompanhantes}">3</td>
+					<td><a th:href="@{/convidados/alterar/}+${convidado.id}"
+						class="glyphicon glyphicon-pencil"> </a></td>
+					<td><a class="btn btn-link btn-xs" data-toggle="modal"
+						data-target="#confirmacaoExclusaoModal"
+						th:attr="data-codigo=${convidado.id}, data-descricao=${convidado.nome}, data-model='convidado' "
+						title="Excluir" rel="tooltip" data-placement="top"> <span
+							class="glyphicon glyphicon-trash"></span>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-</body>
-</html>
+	<div layout:include="DialogoConfirmacaoExclusao"></div>
 
+</section>
+</html>

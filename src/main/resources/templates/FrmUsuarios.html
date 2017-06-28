@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width" />
-<title>Lista de Convidados</title>
-<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
-</head>
-<body>
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+	
+<section layout:fragment="conteudo">
+	<div layout:include="MensagemGeral"></div>
 
 	<form class="form-horizontal" method="POST" th:action="@{/usuarios}"
 		th:object="${usuario}">
@@ -73,8 +70,5 @@
 			</div>
 		</div>
 	</form>
-
-
-
-</body>
+</section>
 </html>

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.gestaofesta.model.Convidado;
 import com.algaworks.gestaofesta.repository.Convidados;
@@ -62,5 +64,13 @@ public class ConvidadosController {
 	mv.addObject(convidado);
 	return mv;
 	}
+	
+	//Excluir
+		@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+		public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
+			convidados.delete(id);
+			attributes.addFlashAttribute("mensagem", "Convidados excluído com sucesso!");
+			return "redirect:/convidados";
+		}
 
 }
