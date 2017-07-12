@@ -1,8 +1,8 @@
 
 package com.algaworks.gestaofesta.model;
 
-import java.util.Date;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,11 +16,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
+
 @Entity
 public class Usuario  {
 	@Id
 	@GeneratedValue
 	private Long idUsuario;
+
 	@NotEmpty(message="O nome é obrigatório!")
 	private String nome;
 	@NotEmpty(message="O Email é obrigatório!")
@@ -35,6 +37,7 @@ public class Usuario  {
 	@DecimalMax(value = "9999999.99", message = "Valor não pode ser maior que 9.999.999,99")
 	@NumberFormat(pattern = "#,##0.00")
 	private float salario;
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -59,10 +62,12 @@ public class Usuario  {
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
+
 	public float getSalario() {
 		return salario;
 	}
 	public void setSalario(float salario) {
+
 		this.salario = salario;
 	}
 	
