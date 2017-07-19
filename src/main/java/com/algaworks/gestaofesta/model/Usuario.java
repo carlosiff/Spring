@@ -3,9 +3,13 @@ package com.algaworks.gestaofesta.model;
 
 
 import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
@@ -37,7 +41,16 @@ public class Usuario  {
 	@DecimalMax(value = "9999999.99", message = "Valor não pode ser maior que 9.999.999,99")
 	@NumberFormat(pattern = "#,##0.00")
 	private float salario;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private Set<Festa> festas;
 
+
+	public Set<Festa> getFestas() {
+		return festas;
+	}
+	public void setFestas(Set<Festa> festas) {
+		this.festas = festas;
+	}
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
